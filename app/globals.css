@@ -1,4 +1,136 @@
-:root{--ink:#1f2937;--muted:#6b7280;--line:#e5e7eb;--blue:#2563eb;--bg:#f5f7fb}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif}button,input{font:inherit}button{cursor:pointer}.appShell{max-width:1600px;margin:auto;padding:22px 26px 36px}.topbar,.toolbar,.monthNav,.tabs,.statusline{display:flex;align-items:center;justify-content:space-between}.topbar{padding:8px 0 20px}.logo{font-weight:900;letter-spacing:.08em;font-size:19px}.logo span{font-weight:500;color:#64748b}.sub,.hint,footer{color:var(--muted);font-size:13px;margin-top:4px}.quiet,.monthNav button,.tabs button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 15px}.toolbar{gap:16px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px}.monthNav{gap:18px;font-size:20px}.monthNav button{font-size:24px;line-height:1;padding:6px 14px}.tabs{gap:8px}.tabs button{min-width:120px}.tabs button.active,.primary{background:var(--blue);color:#fff;border-color:var(--blue)}.statusline{padding:12px 4px;color:var(--muted);font-size:13px}.statusline span:first-child{color:#15803d}.calendar{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}.weekdays,.calendarGrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}.weekdays>div{text-align:center;padding:12px;background:#f8fafc;border-bottom:1px solid var(--line);font-weight:700}.sun{color:#dc2626}.sat{color:#2563eb}.dayCell{min-height:150px;padding:8px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff}.dayCell:nth-child(7n){border-right:0}.dayCell.empty{background:#fafafa}.dayCell.today{background:#eff6ff}.dayNum{font-weight:800;margin-bottom:7px}.dayNum small{font-size:11px;color:var(--muted);margin-left:5px}.peopleBlock{background:#eff6ff;border-radius:7px;padding:5px 6px;margin:4px 0;min-height:32px;display:flex;flex-wrap:wrap;gap:4px}.peopleBlock b{font-size:10px;color:#1d4ed8;width:100%}.peopleBlock span{font-size:11px;background:#fff;border:1px solid #dbeafe;border-radius:5px;padding:2px 4px}.peopleBlock.pm{background:#ecfdf5}.peopleBlock.pm b{color:#047857}.peopleBlock.pm span{border-color:#d1fae5}.editArea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}.tableWrap{overflow:auto;max-height:70vh}.shiftTable{border-collapse:separate;border-spacing:0;min-width:max-content;width:100%;font-size:12px}.shiftTable th,.shiftTable td{border-right:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center;padding:4px;min-width:48px}.shiftTable thead th{position:sticky;top:0;background:#f8fafc;z-index:2}.shiftTable thead tr:nth-child(2) th{top:36px}.shiftTable .nameCol{position:sticky;left:0;z-index:3;background:#f8fafc;min-width:110px;text-align:left;padding:8px}.shiftTable tbody .nameCol{background:#fff}.shiftTable th small{display:block;color:var(--muted);font-weight:400}.cell{width:100%;min-height:42px;border:1px solid transparent;border-radius:7px;background:#f8fafc;color:#64748b;font-size:11px;padding:4px}.cell:not(:empty){font-weight:700}.status-出勤{background:#dcfce7;color:#166534}.status-勤務可能{background:#fef3c7;color:#92400e}.status-希望{background:#dbeafe;color:#1d4ed8}.status-休み{background:#f1f5f9;color:#475569}.count{font-weight:800}.addStaff{display:flex;gap:8px;margin-top:14px}.addStaff input,.loginCard input{padding:12px;border:1px solid var(--line);border-radius:9px;min-width:0}.addStaff button{background:#111827;color:#fff;border:0;border-radius:9px;padding:0 18px}.modalBackdrop{position:fixed;inset:0;background:#0f172a88;display:grid;place-items:center;padding:18px;z-index:10}.modal{position:relative;background:#fff;border-radius:18px;padding:26px;width:min(420px,100%);box-shadow:0 20px 60px #0003}.modal h2{margin:0}.modal p{color:var(--muted)}.close{position:absolute;right:14px;top:12px;border:0;background:transparent;font-size:26px}.statusChoices{display:grid;grid-template-columns:1fr 1fr;gap:9px}.statusChoices button{padding:14px 8px;border:1px solid var(--line);border-radius:10px;background:#f8fafc}.statusChoices .clearChoice{grid-column:1/-1;color:#b91c1c}.error,.errorBanner{color:#b91c1c}.errorBanner{background:#fee2e2;border-radius:9px;padding:10px}.login{min-height:100vh;display:grid;place-items:center;padding:20px}.loginCard{width:min(390px,100%);background:#fff;padding:30px;border:1px solid var(--line);border-radius:18px;display:flex;flex-direction:column;gap:14px}.loginCard h1{margin:8px 0 0}.loginCard p{margin:0;color:var(--muted)}.primary{border:0;border-radius:9px;padding:13px;font-weight:700}footer{text-align:center;padding:20px}@media(max-width:700px){.appShell{padding:12px}.dayCell{min-height:112px;padding:4px}.peopleBlock span{font-size:9px}.toolbar{align-items:stretch}.tabs button{min-width:0;flex:1}.monthNav{justify-content:center}.calendar{overflow-x:auto}.calendarGrid,.weekdays{min-width:760px}}
+:root{--ink:#1f2937;--muted:#6b7280;--line:#e5e7eb;--blue:#2563eb;--bg:#f5f7fb}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif}button,input{font:inherit}button{cursor:pointer}.appShell{max-width:1600px;margin:auto;padding:22px 26px 36px}.topbar,.toolbar,.monthNav,.tabs,.statusline{display:flex;align-items:center;justify-content:space-between}.topbar{padding:8px 0 20px}.logo{font-weight:900;letter-spacing:.08em;font-size:19px}.logo span{font-weight:500;color:#64748b}.sub,.hint,footer{color:var(--muted);font-size:13px;margin-top:4px}.quiet,.monthNav button,.tabs button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 15px}.toolbar{gap:16px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px}.monthNav{gap:18px;font-size:20px}.monthNav button{font-size:24px;line-height:1;padding:6px 14px}.tabs{gap:8px}.tabs button{min-width:120px}.tabs button.active,.primary{background:var(--blue);color:#fff;border-color:var(--blue)}.statusline{padding:12px 4px;color:var(--muted);font-size:13px}.statusline span:first-child{color:#15803d}.calendar{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}.weekdays,.calendarGrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}.weekdays>div{text-align:center;padding:12px;background:#f8fafc;border-bottom:1px solid var(--line);font-weight:700}.sun{color:#dc2626}.sat{color:#2563eb}.dayCell{min-height:150px;padding:8px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff}.dayCell:nth-child(7n){border-right:0}.dayCell.empty{background:#fafafa}.dayCell.today{background:#eff6ff}.dayNum{font-weight:800;margin-bottom:7px}.dayNum small{font-size:11px;color:var(--muted);margin-left:5px}.peopleBlock{background:#eff6ff;border-radius:7px;padding:5px 6px;margin:4px 0;min-height:32px;display:flex;flex-wrap:wrap;gap:4px}.peopleBlock b{font-size:10px;color:#1d4ed8;width:100%}.peopleBlock span{font-size:11px;background:#fff;border:1px solid #dbeafe;border-radius:5px;padding:2px 4px}.peopleBlock.pm{background:#ecfdf5}.peopleBlock.pm b{color:#047857}.peopleBlock.pm span{border-color:#d1fae5}.editArea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}.tableWrap{overflow:auto;max-height:70vh}.shiftTable{border-collapse:separate;border-spacing:0;min-width:max-content;width:100%;font-size:12px}.shiftTable th,.shiftTable td{border-right:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center;padding:4px;min-width:48px}.shiftTable thead th{position:sticky;top:0;background:#f8fafc;z-index:2}.shiftTable thead tr:nth-child(2) th{top:36px}.shiftTable .nameCol{position:sticky;left:0;z-index:3;background:#f8fafc;min-width:110px;text-align:left;padding:8px}.shiftTable tbody .nameCol{background:#fff}.shiftTable th small{display:block;color:var(--muted);font-weight:400}
+/* シフト編集：基本のセル */
+.cell {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: #64748b;
+  font-size: 11px;
+  padding: 4px;
+  font-weight: 600;
+}
+
+/* 出勤：目立つ暖色オレンジ */
+.cell.status-attendance {
+  background: #F4A261;
+  color: #66350D;
+  border-color: #E9954F;
+  font-weight: 800;
+}
+
+/* 勤務可能：薄い青 */
+.cell.status-available {
+  background: #DCEBFA;
+  color: #285A91;
+  border-color: #C5DCF4;
+}
+
+/* 希望○：薄い緑 */
+.cell.status-wish-yes {
+  background: #E2F0D9;
+  color: #3F6B32;
+  border-color: #CDE2C1;
+}
+
+/* 希望×：薄い赤 */
+.cell.status-wish-no {
+  background: #FCE4E4;
+  color: #9B3434;
+  border-color: #F4CCCC;
+}
+
+/* 休み：グレー */
+.cell.status-holiday {
+  background: #E6E7E9;
+  color: #555B63;
+  border-color: #D5D8DC;
+}
+
+/* ×：赤系 */
+.cell.status-unavailable {
+  background: #FCE4E4;
+  color: #9B3434;
+  border-color: #F4CCCC;
+}
+
+/* AM・PMの列にうっすら色を付ける */
+.shiftTable tbody td:nth-of-type(odd) {
+  background: #F3F7FC;
+}
+
+.shiftTable tbody td:nth-of-type(even) {
+  background: #FFFAF3;
+}
+
+/* 選択済みの色をAM・PMの背景より優先 */
+.shiftTable tbody td .cell {
+  background: transparent;
+}
+
+.shiftTable tbody td .cell.status-attendance {
+  background: #F4A261;
+}
+
+.shiftTable tbody td .cell.status-available {
+  background: #DCEBFA;
+}
+
+.shiftTable tbody td .cell.status-wish-yes {
+  background: #E2F0D9;
+}
+
+.shiftTable tbody td .cell.status-wish-no {
+  background: #FCE4E4;
+}
+
+.shiftTable tbody td .cell.status-holiday {
+  background: #E6E7E9;
+}
+
+.shiftTable tbody td .cell.status-unavailable {
+  background: #FCE4E4;
+}
+
+/* AM・PMの見出しもほんのり色分け */
+.shiftTable thead tr:nth-child(2) th:nth-child(even) {
+  background: #F3F7FC;
+}
+
+.shiftTable thead tr:nth-child(2) th:nth-child(odd):not(:first-child) {
+  background: #FFFAF3;
+}
+
+/* タップしたときの反応 */
+.cell:active {
+  transform: scale(0.96);
+}
+.count{font-weight:800}
+.addStaff{display:flex;gap:8px;margin-top:14px}
+.addStaff input,
+.loginCard input{padding:12px;border:1px solid var(--line);border-radius:9px;min-width:0}
+.addStaff button{background:#111827;color:#fff;border:0;border-radius:9px;padding:0 18px}
+.modalBackdrop{position:fixed;inset:0;background:#0f172a88;display:grid;place-items:center;padding:18px;z-index:10}
+.modal{position:relative;background:#fff;border-radius:18px;padding:26px;width:min(420px,100%);box-shadow:0 20px 60px #0003}
+.modal h2{margin:0}.modal p{color:var(--muted)}
+.close{position:absolute;right:14px;top:12px;border:0;background:transparent;font-size:26px}
+.statusChoices{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.statusChoices button{padding:14px 8px;border:1px solid var(--line);border-radius:10px;background:#f8fafc}
+.statusChoices 
+.clearChoice{grid-column:1/-1;color:#b91c1c}
+.error,.errorBanner{color:#b91c1c}.errorBanner{background:#fee2e2;border-radius:9px;padding:10px}
+.login{min-height:100vh;display:grid;place-items:center;padding:20px}
+.loginCard{width:min(390px,100%);background:#fff;padding:30px;border:1px solid var(--line);border-radius:18px;display:flex;flex-direction:column;gap:14px}
+.loginCard h1{margin:8px 0 0}.loginCard p{margin:0;color:var(--muted)}
+.primary{border:0;border-radius:9px;padding:13px;font-weight:700}footer{text-align:center;padding:20px}@media(max-width:700px){.appShell{padding:12px}
+                                                                                                                               .dayCell{min-height:112px;padding:4px}.
+                                                                                                                               peopleBlock span{font-size:9px}
+                                                                                                                               .toolbar{align-items:stretch}
+                                                                                                                               .tabs button{min-width:0;flex:1}
+                                                                                                                               .monthNav{justify-content:center}
+                                                                                                                               .calendar{overflow-x:auto}.calendarGrid,
+                                                                                                                               .weekdays{min-width:760px}}
 
 .monthNav input[type="month"] { max-width: 150px; min-width: 130px; padding: 7px; border: 1px solid #d8dce5; border-radius: 8px; background: white; color: inherit; }
 .staffManager { margin-top: 22px; padding: 16px; border: 1px solid #e3e6ed; border-radius: 12px; background: #fff; }
