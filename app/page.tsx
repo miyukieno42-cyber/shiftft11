@@ -5,7 +5,17 @@ type Staff = { id: number; name: string; active: boolean };
 type Shift = { work_date: string; staff_id: number; period: 'AM'|'PM'; status: string };
 const STATUSES = ['出勤','勤務可能','希望○','希望×','休み','×',''];
 const fmt = (d: Date) => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-
+function statusClass(status: string) {
+  switch (status) {
+    case '出勤': return 'status-attendance';
+    case '勤務可能': return 'status-available';
+    case '希望○': return 'status-wish-yes';
+    case '希望×': return 'status-wish-no';
+    case '休み': return 'status-holiday';
+    case '×': return 'status-unavailable';
+    default: return '';
+  }
+}
 export default function Home() {
   const now = new Date();
   const [year,setYear] = useState(now.getFullYear());
@@ -58,7 +68,9 @@ export default function Home() {
     {error&&<div className="errorBanner">{error}</div>}
     {view==='calendar' ? <section className="calendar"><div className="weekdays">{['月','火','水','木','金','土','日'].map((d,i)=><div key={d} className={i===6?'sun':i===5?'sat':''}>{d}</div>)}</div><div className="calendarGrid">{cells.map((date,i)=><div key={i} className={`dayCell ${date?'':'empty'} ${date&&fmt(date)===fmt(new Date())?'today':''}`}>
       {date&&<><div className="dayNum">{date.getDate()}<small>{['日','月','火','水','木','金','土'][date.getDay()]}</small></div><div className="peopleBlock"><b>AM</b>{getNames(date,'AM').map(p=><span key={p.id}>{p.name}</span>)}</div><div className="peopleBlock pm"><b>PM</b>{getNames(date,'PM').map(p=><span key={p.id}>{p.name}</span>)}</div></>}
-    </div>)}</div></section> : <section className="editArea"><div className="hint">マスをタップして勤務区分を選択。変更内容は自動保存されます。</div><div className="tableWrap"><table className="shiftTable"><thead><tr><th className="nameCol">スタッフ</th>{days.map(d=><th key={fmt(d)} colSpan={2}>{d.getDate()}<small>{['日','月','火','水','木','金','土'][d.getDay()]}</small></th>)}<th>出勤<br/>回数</th></tr><tr><th className="nameCol"></th>{days.map(d=><th key={fmt(d)+'am'}>AM</th>).flatMap((x,i)=>[x,<th key={fmt(days[i])+'pm'}>PM</th>])}<th></th></tr></thead><tbody>{activeStaff.map(person=><tr key={person.id}><th className="nameCol">{person.name}</th>{days.map(date=>(['AM','PM'] as const).map(period=>{const status=shiftMap.get(`${fmt(date)}|${person.id}|${period}`)||'';return <td key={fmt(date)+period}><button className={`cell status-${status.replace(/[^\w]/g,'')}`} onClick={()=>setModal({date:fmt(date),staff:person,period})}>{status||'＋'}</button></td>}))}<td className="count">{shifts.filter(s=>s.staff_id===person.id&&s.status==='出勤').length}</td></tr>)}</tbody></table></div><div className="staffManager"><h3>スタッフ管理</h3><form className="addStaff" onSubmit={addStaff}><input value={newName} onChange={e=>setNewName(e.target.value)} placeholder="新しいスタッフ名"/><button>追加</button></form><div className="staffList">{activeStaff.map(person=><div className="staffRow" key={person.id}><span>{person.name}</span><button type="button" className="quiet" onClick={()=>removeStaff(person)}>削除</button></div>)}</div><small>削除したスタッフの過去のシフト記録は保持されます。</small></div></section>}
+    </div>)}</div></section> : <section className="editArea"><div className="hint">マスをタップして勤務区分を選択。変更内容は自動保存されます。</div><div className="tableWrap"><table className="shiftTable"><thead><tr><th className="nameCol">スタッフ</th>{days.map(d=><th key={fmt(d)} colSpan={2}>{d.getDate()}<small>{['日','月','火','水','木','金','土'][d.getDay()]}</small></th>)}<th>出勤<br/>回数</th></tr><tr><th className="nameCol"></th>{days.map(d=><th key={fmt(d)+'am'}>AM</th>).flatMap((x,i)=>[x,<th key={fmt(days[i])+'pm'}>PM</th>])}<th></th></tr></thead><tbody>{activeStaff.map(person=><tr key={person.id}><th className="nameCol">{person.name}</th>{days.map(date=>(['AM','PM'] as const).map(period=>{const status=shiftMap.get(`${fmt(date)}|${person.id}|${period}`)||'';return <td key={fmt(date)+period}>
+      <button className={`cell ${statusClass(status)}`} onClick={()=>setModal({date:fmt(date),staff:person,period})}>{status||'＋'}</button>
+    </td>}))}<td className="count">{shifts.filter(s=>s.staff_id===person.id&&s.status==='出勤').length}</td></tr>)}</tbody></table></div><div className="staffManager"><h3>スタッフ管理</h3><form className="addStaff" onSubmit={addStaff}><input value={newName} onChange={e=>setNewName(e.target.value)} placeholder="新しいスタッフ名"/><button>追加</button></form><div className="staffList">{activeStaff.map(person=><div className="staffRow" key={person.id}><span>{person.name}</span><button type="button" className="quiet" onClick={()=>removeStaff(person)}>削除</button></div>)}</div><small>削除したスタッフの過去のシフト記録は保持されます。</small></div></section>}
     {modal&&<div className="modalBackdrop" onClick={()=>setModal(null)}><div className="modal" onClick={e=>e.stopPropagation()}><button className="close" onClick={()=>setModal(null)}>×</button><h2>{modal.staff.name}</h2><p>{modal.date}・{modal.period}</p><div className="statusChoices">{STATUSES.map(status=><button key={status||'clear'} className={status===''?'clearChoice':''} onClick={()=>updateShift(modal.date,modal.staff,modal.period,status)}>{status||'入力をクリア'}</button>)}</div></div></div>}
     <footer>シフト情報はデータベースに保存されます。ページを閉じても内容は残ります。</footer>
   </main>;
